@@ -36,6 +36,15 @@
         "incontinence",
         "grumpy"
       ]
+    },
+    {
+      "id": "b94c",
+      "name": "John",
+      "age": "45",
+      "pathologies": [
+        "Brain cancer",
+        "Diabete type II"
+      ]
     }
   ],
   "Users": [

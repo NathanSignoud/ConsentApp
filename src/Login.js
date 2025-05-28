@@ -30,7 +30,8 @@ const Login = ({ setLogged }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Connexion</h2>
+      <div className="create">
+        <h2>Connexion</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <label>Email :</label>
@@ -40,6 +41,7 @@ const Login = ({ setLogged }) => {
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
       <button type="submit">Se connecter</button>
+      </div>
     </form>
   );
 };

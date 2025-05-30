@@ -7,6 +7,7 @@ const Create = () => {
   const [age, setAge] = useState();
   const [pathologies, setPathologies] = useState(['']);
   const [isPending, setIsPending] = useState(false);
+  const [pdfFiles, setPdfFiles] = useState([]);
   const history = useHistory();
 
   const handlePathologyChange = (index, value) => {
@@ -21,21 +22,20 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPatient = {
-      name, 
-      age,  
-      pathologies: pathologies.filter(p => p.trim() !== '')
-    }
     setIsPending(true);
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('age', age);
+    formData.append('pathologies', JSON.stringify(pathologies));
+    pdfFiles.forEach(file => formData.append('pdfs', file));
 
-    fetch('http://localhost:8000/PatientList', {
+    fetch('http://localhost:5000/api/patients', {
       method: 'POST',
-      headers: { "Content-type": "application/json"},
-      body: JSON.stringify(newPatient)
-    }).then(() => {
-      console.log('New Patient Added')
-      setIsPending(false);
-      history.push('/')
+      body: formData,
+      }).then(() => {
+        console.log('New Patient Added')
+        setIsPending(false);
+        history.push('/')
     })
   }
 
@@ -69,6 +69,12 @@ const Create = () => {
       <button type="button" onClick={addPathologyField}>
         Ajouter une pathologie
       </button>
+      <input
+        type="file"
+        multiple
+        accept="application/pdf"
+        onChange={(e) => setPdfFiles([...e.target.files])}
+      />
       {!isPending && <button>Submit Patient</button>}
       { isPending && <button disabled>Loading...</button>}
         </form>

@@ -23,19 +23,23 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPending(true);
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('age', age);
     formData.append('pathologies', JSON.stringify(pathologies));
     pdfFiles.forEach(file => formData.append('pdfs', file));
 
-    fetch('http://localhost:5000/api/patients', {
+    fetch('/api/patients', {
       method: 'POST',
       body: formData,
       }).then(() => {
         console.log('New Patient Added')
         setIsPending(false);
         history.push('/')
+    }).catch((err) => {
+      console.log('Error incountered');
+      setIsPending(false);
     })
   }
 

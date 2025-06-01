@@ -1,17 +1,27 @@
-import PatientList from "./PatientList";
+import { useState } from "react";
 import useFetch from "./useFetch";
+import PatientList from "./PatientList";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
+  const { data: patientList, isPending, error } = useFetch('http://localhost:5000/api/patients');
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const {data : patientList, isPending, error} = useFetch('http://localhost:5000/api/patients')
-    
-    return ( 
-        <div className="home">
-            {error && <div> {error} </div>}
-            {isPending && <div>Loading...</div>}
-            {patientList && <PatientList patients={patientList} title = "Patient List" />}
-            </div>
-     );
-}
+  const filteredPatients = patientList?.filter(patient =>
+    patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    patient.pathologies.some(path => path.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  return (
+    <div className="home">
+      <h2>Recherche de patients</h2>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div>}
+      {filteredPatients && <PatientList patients={filteredPatients} title="Liste des patients" />}
+    </div>
+  );
+};
 
 export default Home;

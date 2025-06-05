@@ -29,6 +29,12 @@
   margin-right: 30px;
 }
 
+.navbar-logo {
+  height: 60px;
+  object-fit: contain;
+}
+
+
 .navbar .links {
   margin-left: auto;
 }

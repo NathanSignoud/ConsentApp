@@ -1,4 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
+import logo from '../assets/logo.jpg';
+
 
 const NavBar = ({logged, setLogged}) => {
 
@@ -12,8 +14,8 @@ const NavBar = ({logged, setLogged}) => {
     return ( 
         <nav className="navbar">
             <div className="navbar-left">
-                <h1>Name</h1>
-                <h2>Role</h2>
+                <img src={logo} alt="Logo" className="navbar-logo" />
+
             </div>
             <div className="links">
                 <Link to="/">Home</Link>

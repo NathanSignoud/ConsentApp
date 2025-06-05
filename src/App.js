@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import NavBar from './NavBar';
-import PrivateRoute from './PrivateRoute'
-import HubDoctor from './HubDoctor';
-import HubAdmin from './HubAdmin';
-import HubPatient from './HubPatient';
-import Create from './Create';
-import Login from './Login';
-import PatientDetail from './PatientDetail'
-import NotFound from './NotFound';
 import { useState } from 'react';
-import Register from './Register';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom';
-import PdfViewer from './PdfViewer';
+import NavBar from './components/NavBar';
+import PrivateRoute from './components/PrivateRoute'
+import HubDoctor from './pages/HubDoctor';
+import HubAdmin from './pages/HubAdmin';
+import HubPatient from './pages/HubPatient';
+import Create from './pages/Create';
+import Login from './pages/Login';
+import PatientDetail from './pages/PatientDetail'
+import NotFound from './pages/NotFound';
+import Register from './pages/Register';
+import PdfViewer from './pages/PdfViewer';
 
 function App() {
 

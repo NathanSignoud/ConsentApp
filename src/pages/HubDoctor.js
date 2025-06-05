@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useFetch from "./useFetch";
-import PatientList from "./PatientList";
-import SearchBar from "./SearchBar";
+import useFetch from "../hooks/useFetch";
+import PatientList from "../components/PatientList";
+import SearchBar from "../components/SearchBar";
 
 const Home = () => {
   const { data: patientList, isPending, error } = useFetch('http://localhost:5000/api/patients');
